@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "שעונים";
+}
+
+<div class="row bg-title">
+    <div class="row title">
+        <h4 class="page-title">רשימת העסקאות </h4>
+        <button class="btn-blue-secondary" onclick="AddWatchOrder()"><span>&#43;</span> הוסף עסקה</button>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        @*<a href="http://wrappixel.com/templates/pixeladmin/" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">upgrade to pro</a>*@
+        <ol class="breadcrumb">
+            <li><a href="#">עסקאות</a></li>
+            <li class="active">שעונים</li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="white-box">
+                <table id="watchOrdersTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>לקוח</th>
+                            <th>נייד</th>
+                            <th>שעון</th>
+                            <th>מק"ט</th>
+                            <th>תאריך עסקה</th>
+                            <th>תוקף אחריות</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div id="OptionsModal" class="modal">
+                    <div class="modal-content">
+                        <div class="card card-user">
+                            <div class="card-body">
+                                <div class="author" id="popup_options">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/SiteSripts/Global.js"></script>
+    <script src="~/Scripts/SiteSripts/Watches.js"></script>
+}
+
+

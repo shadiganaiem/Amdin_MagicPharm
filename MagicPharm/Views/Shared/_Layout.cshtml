@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    @*<meta http-equiv="X-UA-Compatible" content="IE=edge">*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/Site/plugins/images/favicon.png">
+    <link href="~/Content/Site/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Site/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="~/Content/Site/css/animate.css" rel="stylesheet">
+    <link href="~/Content/Site/css/style.css" rel="stylesheet">
+    <link href="~/Content/Site/css/FixedStyle.css" rel="stylesheet">
+    <link href="~/Content/Site/css/colors/blue-dark.css" id="theme" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        @{ Html.RenderPartial("~/Views/Partials/Header.cshtml"); }
+        @{ Html.RenderPartial("~/Views/Partials/SideMenu.cshtml"); }
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                @RenderBody()
+
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2020 &copy; מגיק פארם בע"מ </footer>
+        </div>
+    </div>
+    <script src="~/Content/Site/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/Site/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/Site/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <script src="~/Content/Site/js/jquery.slimscroll.js"></script>
+    <script src="~/Content/Site/js/waves.js"></script>
+    <script src="~/Content/Site/js/custom.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "שעונים";
+}
+
+<div class="row bg-title">
+    <div class="row title">
+        <h4 class="page-title">רשימת הלקוחות </h4>
+        @*<button class="btn-blue-secondary" onclick="AddWatchOrder()"><span>&#43;</span> הוסף עסקה</button>*@
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        @*<a href="http://wrappixel.com/templates/pixeladmin/" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">upgrade to pro</a>*@
+        <ol class="breadcrumb">
+            <li><a href="#">רשימות</a></li>
+            <li class="active">לקוחות</li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="white-box">
+                <table id="clientsTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>לקוח</th>
+                            <th>נייד</th>
+                            <th>נייד נוסף</th>
+                            <th>עסקה אחרונה</th>
+                            <th>תאריך יצירה </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/SiteSripts/Clients.js"></script>
+}
+
+
