@@ -1,4 +1,25 @@
 ﻿$(document).ready(function () {
+    InitializeWatchesTable()
+});
+
+function AddWatchOrder() {
+    var modal = document.getElementById("OptionsModal");
+    $.ajax({
+        type: 'GET',
+        url: '/Watches/AddOrder',
+        success: function (data) {
+            $('#popup_options').html(data);
+            $('#OptionsModal').fadeIn();
+        }
+    });
+    window.onclick = function (event) {
+        if (event.target == modal)
+            $('#OptionsModal').fadeOut();
+    }
+}
+
+function InitializeWatchesTable() {
+    $('#watchOrdersTable').DataTable().destroy();
     $('#watchOrdersTable').DataTable({
         "ajax": {
             "url": "/Watches/GetAllWatchesOrders",
@@ -43,21 +64,4 @@
             "sLengthMenu": "מציג _MENU_ רשומות"
         }
     });
-
-});
-
-function AddWatchOrder() {
-    var modal = document.getElementById("OptionsModal");
-    $.ajax({
-        type: 'GET',
-        url: '/Watches/AddOrder',
-        success: function (data) {
-            $('#popup_options').html(data);
-            $('#OptionsModal').fadeIn();
-        }
-    });
-    window.onclick = function (event) {
-        if (event.target == modal)
-            $('#OptionsModal').fadeOut();
-    }
 }

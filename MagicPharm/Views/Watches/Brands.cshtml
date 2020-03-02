@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "שעונים - מותגים";
+}
+
+<div class="row bg-title">
+    <div class="row title">
+        <h4 class="page-title">מותגים </h4>
+        <button class="btn-blue-secondary" onclick="GetAddBrandPartial()"><span>&#43;</span> הוסף מותג</button>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="#">שעונים</a></li>
+            <li class="active">מותגים</li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="white-box">
+                <table id="brandsTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>שם המותג</th>
+                            <th>רמז</th>
+                            <th>ברקוד</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div id="OptionsModal" class="modal">
+            <div class="modal-content" style="width:45%">
+                <div class="card card-user">
+                    <div class="card-body">
+                        <div class="author" id="popup_options">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/SiteSripts/Watches/Brands.js"></script>
+}
+
+
+

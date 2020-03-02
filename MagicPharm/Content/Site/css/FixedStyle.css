@@ -165,4 +165,9 @@ select, select + .select2-container--default .select2-selection--single {
     .btn-submit {
         width: 100%;
     }
+
+    .modal-content {
+        width: 70% !important;
+        overflow-x: hidden;
+    }
 }

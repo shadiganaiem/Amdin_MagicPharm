@@ -10,7 +10,6 @@ namespace MagicPharm.Models
         public ApplicationDbContext()
             : base("name=ApplicationDbContext")
         {
-            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Client> Clients { get; set; }
@@ -19,11 +18,17 @@ namespace MagicPharm.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WatchBrand> WatchBrands { get; set; }
         public virtual DbSet<WatchOrder> WatchOrders { get; set; }
+        public virtual DbSet<WatchRepair> WatchRepairs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Client>()
                 .HasMany(e => e.WatchOrders)
+                .WithRequired(e => e.Client)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Client>()
+                .HasMany(e => e.WatchRepairs)
                 .WithRequired(e => e.Client)
                 .WillCascadeOnDelete(false);
 
@@ -37,10 +42,20 @@ namespace MagicPharm.Models
                 .WithRequired(e => e.Status)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Status>()
+                .HasMany(e => e.WatchRepairs)
+                .WithRequired(e => e.Status)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<WatchBrand>()
                 .HasMany(e => e.WatchOrders)
                 .WithRequired(e => e.WatchBrand)
                 .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<WatchBrand>()
+            //    .HasMany(e => e.WatchRepairs)
+            //    .WithRequired(e => e.WatchBrand)
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

@@ -19,6 +19,10 @@ namespace MagicPharm.Models
         [Required]
         public string Name { get; set; }
 
+        public string Symbol { get; set; }
+
+        public string Barcode { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WatchOrder> WatchOrders { get; set; }
     }

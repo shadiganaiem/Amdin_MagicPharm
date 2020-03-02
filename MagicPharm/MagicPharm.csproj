@@ -157,12 +157,15 @@
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\DataTable\ClientGridSource.cs" />
+    <Compile Include="Models\DataTable\WatchBrandGridSource.cs" />
     <Compile Include="Models\DataTable\WatchOrderGridSource.cs" />
+    <Compile Include="Models\DataTable\WatchRepairGridSource.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WatchBrand.cs" />
     <Compile Include="Models\WatchOrder.cs" />
+    <Compile Include="Models\WatchRepair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -604,6 +607,8 @@
     <Content Include="Content\Site\bootstrap\LICENSE" />
     <Content Include="Content\Site\bootstrap\package.json" />
     <Content Include="Content\Site\bootstrap\README.md" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -616,9 +621,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\SiteSripts\Clients.js" />
+    <Content Include="Scripts\SiteSripts\Clients\Clients.js" />
     <Content Include="Scripts\SiteSripts\Global.js" />
-    <Content Include="Scripts\SiteSripts\Watches.js" />
+    <Content Include="Scripts\SiteSripts\Watches\Brands.js" />
+    <Content Include="Scripts\SiteSripts\Watches\Repairs.js" />
+    <Content Include="Scripts\SiteSripts\Watches\Watches.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -638,9 +645,15 @@
     <Content Include="Views\Watches\Index.cshtml" />
     <Content Include="Views\Watches\Partials\AddOrder.cshtml" />
     <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Watches\Brands.cshtml" />
+    <Content Include="Views\Watches\Partials\AddBrand.cshtml" />
+    <Content Include="Views\Watches\Partials\EditBrand.cshtml" />
+    <Content Include="Views\Watches\Repairs.cshtml" />
+    <Content Include="Views\Watches\Partials\AddRepair.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Brands\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,53 @@
+﻿<div class="row">
+    <div class="row title">
+        <h4 class="page-title">הוספת מותג חדש </h4>
+    </div>
+
+    <form id="form" method="post">
+        <div class="row inputsRow">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>ברקוד</label>
+                    <input class="inputStyle" name="Barcode" placeholder="ברקוד" tabindex="3" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>רמז</label>
+                    <input class="inputStyle" name="Symbol" placeholder="רמז המותג" tabindex="2" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>שם המותג</label>
+                    <input class="inputStyle" name="Name" placeholder="שם המותג" tabindex="1" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="inputsRow" style="text-align:right">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button type="submit" class="btn-blue btn-submit">הוסף</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $("#form").on('submit', function (e) {
+        e.preventDefault() // prevent the form's normal submission
+        var dataToPost = $(this).serialize()
+        $.post("/Watches/AddBrand", dataToPost)
+            .done(function (response, status, jqxhr) {
+                if (response.succ) {
+
+                }
+            })
+            .fail(function (jqxhr, status, error) {
+                alert(error);
+            })
+            .complete(function (jqxhr, status, error) {
+                InitializeBrandsTable();
+                $('#OptionsModal').fadeOut();
+            })
+    })
+</script>

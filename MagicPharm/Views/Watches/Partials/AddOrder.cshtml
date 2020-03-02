@@ -4,25 +4,25 @@
         <h4 class="page-title">עסקה חדשה </h4>
     </div>
 
-    @using (Html.BeginForm())
-    {
+    <form id="form" method="post">
         <div class="row inputsRow">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label>מס' נייד נוסף</label>
-                    <input class="inputStyle" name="Client.Telephone" maxlength="10" placeholder="מספר נייד נוסף" tabindex="3" />
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label>מס' נייד</label>
-                    <input class="inputStyle" name="Client.Phone" placeholder="מספר נייד" tabindex="2" required />
+                    <input class="inputStyle" name="Client.Telephone" id="Client_Telephone" maxlength="10" placeholder="מספר נייד נוסף" tabindex="3" />
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label>שם לקוח</label>
-                    <input class="inputStyle" name="Client.FullName" placeholder="שם לקוח" tabindex="1" required />
+                    <input class="inputStyle" name="Client.FullName" id="Client_FullName" placeholder="שם לקוח" tabindex="1" required />
+                    <input type="hidden" name="Client.ID" id="Client_ID" value="0" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>מס' נייד</label>
+                    <input class="inputStyle" name="Client.Phone" id="Client_Phone" placeholder="מספר נייד" tabindex="2" required />
                 </div>
             </div>
         </div>
@@ -68,11 +68,41 @@
                 <button type="submit" class="btn-blue btn-submit">הוסף</button>
             </div>
         </div>
-    }
+    </form>
 </div>
 
 <script>
     $(document).ready(function () {
         initializeWatchBrandsList('WatchBrandId');
     });
+
+    $("#form").on('submit', function (e) {
+        e.preventDefault() // prevent the form's normal submission
+        var dataToPost = $(this).serialize()
+        $.post("/Watches/AddOrder", dataToPost)
+            .done(function (response, status, jqxhr) {
+                if (response.succ) {
+
+                }
+            })
+            .fail(function (jqxhr, status, error) {
+                alert(error);
+            })
+            .complete(function (jqxhr, status, error) {
+                InitializeWatchesTable();
+                $('#OptionsModal').fadeOut();
+            })
+    })
+
+    $('#Client_Phone').on('change', function () {
+        $.post("/Clients/FindClient", { phone: $('#Client_Phone').val() })
+            .done(function (response, status, jqxhr) {
+                $("#Client_FullName").val(response.clientName);
+                $("#Client_ID").val(response.clientId);
+                $("#Client_Telephone").val(response.clientTelephone);
+            })
+            .fail(function (jqxhr, status, error) {
+                alert(error);
+            })
+    })
 </script>

@@ -13,6 +13,7 @@ namespace MagicPharm.Models
         public Status()
         {
             Users = new HashSet<User>();
+            WatchRepairs = new HashSet<WatchRepair>();
         }
 
         public int ID { get; set; }
@@ -22,5 +23,8 @@ namespace MagicPharm.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WatchRepair> WatchRepairs { get; set; }
     }
 }
