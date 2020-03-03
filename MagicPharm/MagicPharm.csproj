@@ -651,6 +651,7 @@
     <Content Include="Views\Watches\Repairs.cshtml" />
     <Content Include="Views\Watches\Partials\AddRepair.cshtml" />
     <Content Include="Views\Clients\Partials\Edit.cshtml" />
+    <Content Include="Views\Watches\Partials\EditOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

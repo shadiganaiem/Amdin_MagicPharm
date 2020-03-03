@@ -146,6 +146,17 @@ namespace MagicPharm.Controllers
         }
 
         /// <summary>
+        /// Edit Order Partial view
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public ActionResult EditOrder(int orderId)
+        {
+            var order = _context.WatchOrders.Include("Client").Include("WatchBrand").First(x => x.ID == orderId);
+            return PartialView("~/Views/Watches/Partials/EditOrder.cshtml", order);
+        }
+
+        /// <summary>
         /// Watches Repair statuses as list to choose from.
         /// </summary>
         /// <param name="searchTerm"></param>

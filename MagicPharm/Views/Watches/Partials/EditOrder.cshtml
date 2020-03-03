@@ -1,0 +1,121 @@
+﻿@model MagicPharm.Models.WatchOrder
+
+
+<script type="text/javascript">
+    var brandName = @Html.Raw(Json.Encode(Model.WatchBrand.Name))
+    var brandId= @Html.Raw(Json.Encode(Model.WatchBrand.ID))
+</script>
+
+<div class="row">
+
+    <div class="row title">
+        <h4 class="page-title">עריכת עסקה </h4>
+    </div>
+
+    <form id="form" method="post">
+        @Html.HiddenFor(a => a.ID)
+        @Html.HiddenFor(a => a.Client.ID)
+
+        <div class="row inputsRow">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>מס' נייד נוסף</label>
+                    <input class="inputStyle" name="Client.Telephone" id="Client_Telephone" maxlength="10" placeholder="מספר נייד נוסף" value="@Model.Client.Telephone" tabindex="3" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>שם לקוח</label>
+                    <input class="inputStyle" name="Client.FullName" id="Client_FullName" placeholder="שם לקוח" tabindex="1" value="@Model.Client.FullName" required />
+                    <input type="hidden" name="Client.ID" id="Client_ID" value="0" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>מס' נייד</label>
+                    <input class="inputStyle" name="Client.Phone" id="Client_Phone" placeholder="מספר נייד" tabindex="2" value="@Model.Client.Phone" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="row inputsRow">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>אחריות עד</label>
+                    <input class="inputStyle" type="date" name="GuaranteeDate" tabindex="6"  value="@String.Format("{0:dd-MM-yyyy}", Model.GuaranteeDate)" required />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>מק"ט</label>
+                    <input class="inputStyle" name="WatchCatalogNumber" placeholder="xx-xxxxxxx" tabindex="5" value="@Model.WatchCatalogNumber" required />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-group">
+                    <label>מותג השעון</label>
+                    <select class="inputStyle" name="WatchBrandId" id="WatchBrandId" tabindex="4" required></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row inputsRow">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4">
+                <div class="form-group">
+                    <label>אחוז הנחה</label>
+                    <input class="inputStyle" name="Discount" placeholder="%" tabindex="8" value="@Model.Discount" required />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-group">
+                    <label>סה"כ לפני הנחה</label>
+                    <input class="inputStyle" name="PreDiscountPrice" placeholder="₪" tabindex="7" value="@Model.PreDiscountPrice" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="inputsRow" style="text-align:right">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button type="submit" class="btn-blue btn-submit">עריכה</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        initializeWatchBrandsList('WatchBrandId', { text: brandName, id: brandId });
+    });
+
+$("#form").on('submit', function (e) {
+    e.preventDefault() // prevent the form's normal submission
+    var dataToPost = $(this).serialize()
+    $.post("/Watches/AddOrder", dataToPost)
+        .done(function (response, status, jqxhr) {
+            if (response.succ) {
+
+            }
+        })
+        .fail(function (jqxhr, status, error) {
+            alert(error);
+        })
+        .complete(function (jqxhr, status, error) {
+            InitializeWatchesTable();
+            $('#OptionsModal').fadeOut();
+        })
+})
+
+
+
+//$('#Client_Phone').on('change', function () {
+//    $.post("/Clients/FindClient", { phone: $('#Client_Phone').val() })
+//        .done(function (response, status, jqxhr) {
+//            $("#Client_FullName").val(response.clientName);
+//            $("#Client_ID").val(response.clientId);
+//            $("#Client_Telephone").val(response.clientTelephone);
+//        })
+//        .fail(function (jqxhr, status, error) {
+//            alert(error);
+//        })
+//})
+</script>

@@ -18,6 +18,23 @@ function AddWatchOrder() {
     }
 }
 
+function EditWatchOrderPartial(id) {
+    var modal = document.getElementById("OptionsModal");
+    $.ajax({
+        type: 'GET',
+        url: '/Watches/EditOrder',
+        data: { orderId: id },
+        success: function (data) {
+            $('#popup_options').html(data);
+            $('#OptionsModal').fadeIn();
+        }
+    });
+    window.onclick = function (event) {
+        if (event.target == modal)
+            $('#OptionsModal').fadeOut();
+    }
+}
+
 function InitializeWatchesTable() {
     $('#watchOrdersTable').DataTable().destroy();
     $('#watchOrdersTable').DataTable({
@@ -48,7 +65,7 @@ function InitializeWatchesTable() {
             },
             {
                 "data": "ID", "render": function (data) {
-                    return '<button type="button" class="btn-blue" onclick="EditClientPartial()">פרטי לקוח</button>';
+                    return '<button type="button" class="btn-blue" onclick="EditWatchOrderPartial(' + data + ')">עריכה</button>';
                 }
             }
         ],
