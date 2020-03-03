@@ -48,7 +48,7 @@ function InitializeWatchesTable() {
             },
             {
                 "data": "ID", "render": function (data) {
-                    return '<button type="button" class="btn-blue" onclick="AddWatchOrder()">פרטי לקוח</button>';
+                    return '<button type="button" class="btn-blue" onclick="EditClientPartial()">פרטי לקוח</button>';
                 }
             }
         ],

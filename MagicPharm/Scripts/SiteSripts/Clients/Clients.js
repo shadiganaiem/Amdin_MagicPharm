@@ -1,4 +1,10 @@
 ﻿$(document).ready(function () {
+    InitializeClientsTable();
+});
+
+
+function InitializeClientsTable() {
+    $('#clientsTable').DataTable().destroy();
     $('#clientsTable').DataTable({
         "ajax": {
             "url": "/Clients/GetAllClients",
@@ -26,6 +32,11 @@
                     var month = date.getMonth() + 1;
                     return date.getDate() + "/" + month + "/" + date.getFullYear()
                 }
+            },
+            {
+                "data": "ID", "render": function (data) {
+                    return '<button type="button" class="btn-blue" onclick="EditClientParial(' + data + ')">פרטי לקוח</button>';
+                }
             }
         ],
         "pagingType": "numbers",
@@ -40,5 +51,5 @@
             "sLengthMenu": "מציג _MENU_ רשומות"
         }
     });
+}
 
-});

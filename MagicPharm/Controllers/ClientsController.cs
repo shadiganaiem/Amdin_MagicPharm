@@ -1,10 +1,9 @@
-﻿using MagicPharm.Models;
-using MagicPharm.Models.DataTable;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using MagicPharm.Models;
+using System.Data.Entity;
+using MagicPharm.Models.DataTable;
 
 namespace MagicPharm.Controllers
 {
@@ -17,10 +16,7 @@ namespace MagicPharm.Controllers
             _context = new ApplicationDbContext();
         }
         // GET: Clients
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
 
         /// <summary>
         /// Get all clients list 
@@ -83,6 +79,38 @@ namespace MagicPharm.Controllers
             }
 
             return new JsonResult { Data = new { clientName = clientName, clientId = clientId, clientTelephone = clientTelephone }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        /// <summary>
+        /// Edit Client PartialView
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Edit(int id)
+        {
+            var client = _context.Clients.First(x => x.ID == id);
+
+            return PartialView("~/Views/Clients/Partials/Edit.cshtml", client);
+        }
+
+        [HttpPost]
+        public JsonResult Edit(Client model)
+        {
+            var succ = false;
+            try
+            {
+                var client = _context.Clients.First(x => x.ID == model.ID);
+                client.FullName = model.FullName;
+                client.Phone = model.Phone;
+                client.Telephone = model.Telephone;
+                _context.SaveChanges();
+                succ = true;
+            }
+            catch (Exception)
+            {
+
+            }
+            return new JsonResult { Data = new { succ = succ }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
 }

@@ -650,6 +650,7 @@
     <Content Include="Views\Watches\Partials\EditBrand.cshtml" />
     <Content Include="Views\Watches\Repairs.cshtml" />
     <Content Include="Views\Watches\Partials\AddRepair.cshtml" />
+    <Content Include="Views\Clients\Partials\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

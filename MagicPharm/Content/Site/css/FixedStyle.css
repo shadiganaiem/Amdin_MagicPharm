@@ -33,7 +33,7 @@ span {
 }
 
 .white-box {
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .btn-submit {
@@ -170,4 +170,6 @@ select, select + .select2-container--default .select2-selection--single {
         width: 70% !important;
         overflow-x: hidden;
     }
+
+    
 }

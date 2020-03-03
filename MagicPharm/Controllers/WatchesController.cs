@@ -1,11 +1,10 @@
-﻿using MagicPharm.Models;
-using MagicPharm.Models.DataTable;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using MagicPharm.Models;
+using System.Data.Entity;
+using System.Collections.Generic;
+using MagicPharm.Models.DataTable;
 
 namespace MagicPharm.Controllers
 {
@@ -21,10 +20,22 @@ namespace MagicPharm.Controllers
         // GET: Watches
         public ActionResult Index() => View();
 
+        /// <summary>
+        /// Watches Brands Main Page.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Brands() => View();
 
+        /// <summary>
+        /// Watches Repairs Maian Page.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Repairs() => View();
 
+        /// <summary>
+        /// Returns all watches orders 
+        /// </summary>
+        /// <returns></returns>
         public JsonResult GetAllWatchesOrders()
         {
             var orders = _context.WatchOrders.Include("Client").Include("WatchBrand").ToList();
@@ -42,6 +53,11 @@ namespace MagicPharm.Controllers
             return new JsonResult { Data = new { data = allOrders }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        /// <summary>
+        /// returns All Watch brands as List to choose from.
+        /// </summary>
+        /// <param name="searchTerm"></param>
+        /// <returns></returns>
         public JsonResult GetWatchBrands(string searchTerm)
         {
             List<WatchBrand> brands = null;
@@ -60,6 +76,10 @@ namespace MagicPharm.Controllers
             return Json(selectList, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// returns All brands GridSource For DataTable
+        /// </summary>
+        /// <returns></returns>
         public JsonResult GetAllBrands()
         {
             var brands = _context.WatchBrands.Select(x => new WatchBrandGridSource
@@ -73,6 +93,10 @@ namespace MagicPharm.Controllers
             return new JsonResult { Data = new { data = brands }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        /// <summary>
+        /// returns all repairs GridSource for DataTable
+        /// </summary>
+        /// <returns></returns>
         public JsonResult GetAllRepairs()
         {
             var repairs = _context.WatchRepairs.Include("Client").Include("Status").Include("WatchBrand").Select(x => new WatchRepairGridSource
@@ -92,18 +116,40 @@ namespace MagicPharm.Controllers
             return new JsonResult { Data = new { data = repairs }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        /// <summary>
+        /// AddOrder Partial View .
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AddOrder() => PartialView("~/Views/Watches/Partials/AddOrder.cshtml");
 
+        /// <summary>
+        /// AddBrand Partial View.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AddBrand() => PartialView("~/Views/Watches/Partials/AddBrand.cshtml");
 
+        /// <summary>
+        /// AddRepair Partial View.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AddRepair() => PartialView("~/Views/Watches/Partials/AddRepair.cshtml");
 
+        /// <summary>
+        /// Edit Brand Parial View.
+        /// </summary>
+        /// <param name="brandId"></param>
+        /// <returns></returns>
         public ActionResult EditBrand(int brandId)
         {
             var brand = _context.WatchBrands.First(x => x.ID == brandId);
             return PartialView("~/Views/Watches/Partials/EditBrand.cshtml", brand);
         }
 
+        /// <summary>
+        /// Watches Repair statuses as list to choose from.
+        /// </summary>
+        /// <param name="searchTerm"></param>
+        /// <returns></returns>
         public JsonResult GetWatchRepairStatuses(string searchTerm)
         {
             List<Status> statuses = null;
@@ -122,6 +168,11 @@ namespace MagicPharm.Controllers
             return Json(selectList, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Add Brand 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult AddBrand(WatchBrand model)
         {
@@ -145,6 +196,11 @@ namespace MagicPharm.Controllers
             return new JsonResult { Data = new { succ = succ }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        /// <summary>
+        /// Edit Brand
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult EditBrand(WatchBrand model)
         {
@@ -162,6 +218,11 @@ namespace MagicPharm.Controllers
             return new JsonResult { Data = new { succ = succ }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        /// <summary>
+        /// Add Order
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult AddOrder(WatchOrder model)
         {
@@ -196,6 +257,11 @@ namespace MagicPharm.Controllers
             return new JsonResult { Data = new { succ = succ }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        /// <summary>
+        /// Add Repair
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult AddRepair(WatchRepair model)
         {
