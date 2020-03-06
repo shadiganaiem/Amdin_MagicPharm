@@ -171,5 +171,13 @@ select, select + .select2-container--default .select2-selection--single {
         overflow-x: hidden;
     }
 
-    
+    .bg-text {
+        width: 90% !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .bg-text {
+        width: 60% !important;
+    }
 }

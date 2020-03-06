@@ -18,6 +18,23 @@ function GetRepairsPartial() {
     }
 }
 
+function EditRepair(id) {
+    var modal = document.getElementById("OptionsModal");
+    $.ajax({
+        type: 'GET',
+        url: '/Watches/EditRepair',
+        data: { repairId: id },
+        success: function (data) {
+            $('#popup_options').html(data);
+            $('#OptionsModal').fadeIn();
+        }
+    });
+    window.onclick = function (event) {
+        if (event.target == modal)
+            $('#OptionsModal').fadeOut();
+    }
+}
+
 function InitializeRepairsTable() {
     $('#repairsTable').DataTable().destroy();
     $('#repairsTable').DataTable({
@@ -60,7 +77,7 @@ function InitializeRepairsTable() {
             { "data": "Status" },
             {
                 "data": "ID", "render": function (data) {
-                    return '<button type="button" class="btn-blue" onclick="AddWatchOrder()">עריכה</button>';
+                    return '<button type="button" class="btn-blue" onclick="EditRepair(' + data + ')">עריכה</button>';
                 }
             }
         ],

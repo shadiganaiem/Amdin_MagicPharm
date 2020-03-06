@@ -7,14 +7,16 @@
         <div class="row inputsRow">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
-                    <label>דגם</label>
-                    <input class="inputStyle" name="WatchBarcode" placeholder="xxx-xxxxx" tabindex="4" required />
+                    <label>מספר תיקון</label>
+                    <input class="inputStyle" name="Number" id="Number" placeholder="מספר שקית התיקון" tabindex="3" required />
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+
                 <div class="form-group">
-                    <label>מותג השעון</label>
-                    <select class="inputStyle" name="WatchBrandId" id="WatchBrandId" tabindex="3" required></select>
+                    <label>שם  לקוח</label>
+                    <input class="inputStyle" name="Client.FullName" id="Client_FullName" placeholder="שם לקוח" tabindex="2" required />
+                    <input type="hidden" name="Client.ID" id="Client_ID" value="0" />
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -22,17 +24,28 @@
                     <label>נייד</label>
                     <input class="inputStyle" name="Client.Phone" id="Client_Phone" placeholder="מספר נייד" tabindex="1" required />
                 </div>
-                <div class="form-group" id="clientName" style="display:none;">
-                    <label>שם  לקוח</label>
-                    <input class="inputStyle" name="Client.FullName" id="Client_FullName" placeholder="שם לקוח" tabindex="2" required />
-                    <input type="hidden" name="Client.ID" id="Client_ID" value="0" />
-                </div>
+
             </div>
         </div>
         <div class="row inputsRow">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4">
+                <div class="form-group">
+                    <label>דגם</label>
+                    <input class="inputStyle" name="WatchBarcode" placeholder="xxx-xxxxx" tabindex="5" required />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>מותג השעון</label>
+                    <select class="inputStyle" name="WatchBrandId" id="WatchBrandId" tabindex="4" required></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row inputsRow">
             <div class="form-group">
                 <label>הערות</label>
-                <textarea class="form-control" name="Description" placeholder="הערות" tabindex="5" style="resize:none;outline:none;" />
+                <textarea class="form-control" name="Description" placeholder="הערות" tabindex="6" style="resize:none;outline:none;border: 1px solid #dd3a8f;" />
             </div>
         </div>
 
@@ -71,7 +84,6 @@
             .done(function (response, status, jqxhr) {
                 $("#Client_FullName").val(response.clientName);
                 $("#Client_ID").val(response.clientId);
-                $("#clientName").slideDown("Slow");
             })
             .fail(function (jqxhr, status, error) {
                 alert(error);

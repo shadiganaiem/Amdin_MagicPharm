@@ -1,0 +1,81 @@
+﻿@model MagicPharm.Models.WatchRepair
+
+@{
+    var statusesList = (List<SelectListItem>)TempData["statuses"];
+    <script type="text/javascript">
+    var brandName = @Html.Raw(Json.Encode(Model.WatchBrand.Name))
+    var brandId= @Html.Raw(Json.Encode(Model.WatchBrand.ID))
+    </script>
+}
+
+<div class="row">
+    <div class="row title">
+        <h4 class="page-title">עריכת תיקון - @Model.Number </h4>
+    </div>
+
+    <form id="form" method="post">
+        @Html.HiddenFor(a => a.ID)
+        <div class="row inputsRow">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-group">
+                    <label>דגם</label>
+                    <input class="inputStyle" name="WatchBarcode" placeholder="xxx-xxxxx" value="@Model.WatchBarcode" tabindex="5" required />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>מותג השעון</label>
+                    <select class="inputStyle" name="WatchBrandId" id="WatchBrandId" tabindex="4" required></select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>מספר תיקון</label>
+                    <input class="inputStyle" name="Number" placeholder="מספר שקית התיקון" tabindex="1" value="@Model.Number" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="row inputsRow">
+            <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-8 col-md-offset-8">
+                <label>סטטוס תיקון</label>
+                @Html.DropDownListFor(a => a.StatusId, statusesList, htmlAttributes: new { @class = "form-control", @tabindex = "9", @required = "required" })
+            </div>
+        </div>
+
+        <div class="row inputsRow">
+            <div class="form-group">
+                <label>הערות</label>
+                <textarea class="form-control" name="Description" placeholder="הערות" tabindex="6" style="text-align:right;resize:none;outline:none;border: 1px solid #dd3a8f;">@Model.Description</textarea>
+            </div>
+        </div>
+
+        <div class="inputsRow" style="text-align:right">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button type="submit" class="btn-blue btn-submit">עדכן</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        initializeWatchBrandsList('WatchBrandId', { text: brandName, id: brandId });
+    });
+
+$("#form").on('submit', function (e) {
+    e.preventDefault() // prevent the form's normal submission
+    var dataToPost = $(this).serialize()
+    $.post("/Watches/EditRepair", dataToPost)
+        .done(function (response, status, jqxhr) {
+            if (response.succ) {
+            }
+        })
+        .fail(function (jqxhr, status, error) {
+            alert(error);
+        })
+        .complete(function (jqxhr, status, error) {
+            InitializeRepairsTable();
+            $('#OptionsModal').fadeOut();
+        })
+})
+</script>

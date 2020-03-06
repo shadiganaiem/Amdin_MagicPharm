@@ -425,6 +425,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\background.jpg" />
+    <Content Include="Images\Crown.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Site\less\colors\blue-dark.less" />
@@ -623,6 +625,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\SiteSripts\Clients\Clients.js" />
     <Content Include="Scripts\SiteSripts\Global.js" />
+    <Content Include="Scripts\SiteSripts\Home\Home.js" />
     <Content Include="Scripts\SiteSripts\Watches\Brands.js" />
     <Content Include="Scripts\SiteSripts\Watches\Repairs.js" />
     <Content Include="Scripts\SiteSripts\Watches\Watches.js" />
@@ -637,9 +640,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Partials\SideMenu.cshtml" />
     <Content Include="Views\Partials\Header.cshtml" />
     <Content Include="Views\Watches\Index.cshtml" />
@@ -652,6 +653,8 @@
     <Content Include="Views\Watches\Partials\AddRepair.cshtml" />
     <Content Include="Views\Clients\Partials\Edit.cshtml" />
     <Content Include="Views\Watches\Partials\EditOrder.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Watches\Partials\EditRepair.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

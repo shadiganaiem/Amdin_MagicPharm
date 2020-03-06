@@ -157,6 +157,25 @@ namespace MagicPharm.Controllers
         }
 
         /// <summary>
+        /// Edit Repair Partial
+        /// </summary>
+        /// <param name="repairId"></param>
+        /// <returns></returns>
+        public ActionResult EditRepair(int repairId)
+        {
+            var statuses = _context.Statuses.Where(x => x.ID >= 1 && x.ID <= 4).Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.ID.ToString()
+            }).ToList();
+            TempData["statuses"] = statuses.ToList();
+
+            var repair = _context.WatchRepairs.Include("Client").Include("WatchBrand").First(x => x.ID == repairId);
+            return PartialView("~/Views/Watches/Partials/EditRepair.cshtml", repair);
+
+        }
+
+        /// <summary>
         /// Watches Repair statuses as list to choose from.
         /// </summary>
         /// <param name="searchTerm"></param>
@@ -302,5 +321,40 @@ namespace MagicPharm.Controllers
 
             return new JsonResult { Data = new { succ = succ }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+        /// <summary>
+        /// Edit Repair model
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult EditRepair(WatchRepair model)
+        {
+            var succ = false;
+            try
+            {
+                var repair = _context.WatchRepairs.First(x => x.ID == model.ID);
+                repair.Number = model.Number;
+                repair.WatchBrandId = model.WatchBrandId;
+                repair.WatchBarcode = model.WatchBarcode;
+                repair.Description = model.Description;
+                if (model.StatusId != repair.StatusId)
+                {
+                    if (model.StatusId == 3 && repair.EndDate == null)
+                        repair.EndDate = DateTime.Now;
+                    else if (model.StatusId == 4 && repair.ReceiptDate == null)
+                        repair.ReceiptDate = DateTime.Now;
+                }
+                repair.StatusId = model.StatusId;
+                _context.SaveChanges();
+                succ = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return new JsonResult { Data = new { succ = succ }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
     }
 }

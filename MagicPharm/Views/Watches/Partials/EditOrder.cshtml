@@ -42,7 +42,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label>אחריות עד</label>
-                    <input class="inputStyle" type="date" name="GuaranteeDate" tabindex="6"  value="@String.Format("{0:dd-MM-yyyy}", Model.GuaranteeDate)" required />
+                    <input class="inputStyle" type="date" name="GuaranteeDate" tabindex="6" Value="@String.Format("{0:yyyy-MM-dd}", Model.GuaranteeDate)" required />
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -104,18 +104,4 @@ $("#form").on('submit', function (e) {
             $('#OptionsModal').fadeOut();
         })
 })
-
-
-
-//$('#Client_Phone').on('change', function () {
-//    $.post("/Clients/FindClient", { phone: $('#Client_Phone').val() })
-//        .done(function (response, status, jqxhr) {
-//            $("#Client_FullName").val(response.clientName);
-//            $("#Client_ID").val(response.clientId);
-//            $("#Client_Telephone").val(response.clientTelephone);
-//        })
-//        .fail(function (jqxhr, status, error) {
-//            alert(error);
-//        })
-//})
 </script>
