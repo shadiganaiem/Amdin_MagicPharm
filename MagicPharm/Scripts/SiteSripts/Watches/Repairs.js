@@ -44,6 +44,7 @@ function InitializeRepairsTable() {
             "datatype": "json"
         },
         "columns": [
+            { "data": "Number"},
             { "data": "ClientName" },
             { "data": "ClientPhone" },
             { "data": "WatchBrand" },
@@ -91,6 +92,10 @@ function InitializeRepairsTable() {
         "language": {
             "search": "חיפוש כללי ",
             "sLengthMenu": "מציג _MENU_ רשומות"
-        }
+        },
+        dom: 'Bfrtip',
+        buttons: [
+           'excel', 'print'
+        ]
     });
 }

@@ -9,6 +9,8 @@ namespace MagicPharm.Models.DataTable
     {
         public int ID { get; set; }
 
+        public string Number { get; set; }
+
         public string ClientName { get; set; }
 
         public string ClientPhone { get; set; }

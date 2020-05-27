@@ -111,6 +111,7 @@ namespace MagicPharm.Controllers
                 ReceiptDate = x.ReceiptDate,
                 Status = x.Status.Name,
                 Description = x.Description,
+                Number = x.Number,
             }).ToList();
 
             return new JsonResult { Data = new { data = repairs }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
